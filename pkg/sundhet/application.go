@@ -19,7 +19,7 @@ var kinds = []struct {
 	name  string
 	chart string
 }{
-	{"Batch", ""},
+	{"Batch", "eio-swe-cronjob"},
 	{"Service", "eio-swe-service"},
 	{"Stream", ""},
 	{"UI", "angular-client"},
