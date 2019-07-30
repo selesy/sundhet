@@ -38,14 +38,19 @@ func Something() {
 	}
 
 	ingresses, err := cs.ExtensionsV1beta1().Ingresses("eio-swe").List(opts)
-	//ingresses, err := cs.NetworkingV1beta1().Ingresses("eio-swe").List(opts)
 	if err != nil {
 		log.Error(err.Error())
-		panic(err.Error())
+	}
+	for _, i := range ingresses.Items {
+		log.Info("Ingress --- Name: ", i.Name, ", Chart: ", i.GetObjectMeta().GetLabels()["chart"])
 	}
 
-	for _, i := range ingresses.Items {
-		log.Info("Ingresses: ", i)
+	cronjobs, err := cs.BatchV1beta1().CronJobs("eio-swe").List(opts)
+	if err != nil {
+		log.Error(err.Error())
+	}
+	for _, i := range cronjobs.Items {
+		log.Info("CronJobs --- Name: ", i.Name, ", Chart: ", i.GetObjectMeta().GetLabels()["chart"])
 	}
 
 }
