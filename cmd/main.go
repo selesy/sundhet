@@ -17,5 +17,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	sundhet.Something()
+	sundhet.Something("k8s-qa-b")
+	sundhet.Something("k8s-prod-b")
 }
