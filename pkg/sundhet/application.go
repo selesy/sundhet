@@ -2,8 +2,6 @@ package sundhet
 
 import (
 	"github.com/blang/semver"
-	corev1 "k8s.io/api/core/v1"
-	networkingv1beta1 "k8s.io/api/networking/v1beta1"
 )
 
 type Kind int
@@ -21,7 +19,7 @@ var kinds = []struct {
 }{
 	{"Batch", "eio-swe-cronjob"},
 	{"Service", "eio-swe-service"},
-	{"Stream", ""},
+	{"Stream", "eio-swe-service"},
 	{"UI", "angular-client"},
 }
 
@@ -33,11 +31,13 @@ func (k Kind) Name() string {
 	return kinds[k].name
 }
 
-type Instance struct {
-	Ingress networkingv1beta1.Ingress
-	Service corev1.Service
+type DeploymentVersion struct {
+	Suffix  string
 	Version semver.Version
+	Containers
 }
+
+type PodVersion
 
 type Application struct {
 	Name       string
